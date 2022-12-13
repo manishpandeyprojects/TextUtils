@@ -32,13 +32,13 @@ export default function Textform(props) {
 
     let handleCopy = ()=>{
 
-        let copyText = document.getElementById("text");
+        // let copyText = document.getElementById("text");
         // Select the text field
-        copyText.select();
+        // copyText.select();
          // Copy the text inside the text field
 
-        navigator.clipboard.writeText(copyText.value);
-        window.getSelection().removeAllRanges();
+        navigator.clipboard.writeText(text);
+        // window.getSelection().removeAllRanges();
         props.showAlert("Text copy into the clipboard!", "success");
     }
 
@@ -68,7 +68,7 @@ export default function Textform(props) {
     }
 
     function countWords(str) {
-        const arr = str.split(' ');  
+        const arr = str.split(/\s+/);  
         return arr.filter(word => word !== '').length;
     }
     
