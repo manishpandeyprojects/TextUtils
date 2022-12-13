@@ -39,7 +39,7 @@ function App() {
     <>
       <Navbar navbarTitle="TextUtils" aboutText="About Us" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
-      <Textform title="Enter your text here" showAlert={showAlert} mode={mode} />
+      <Textform title="Try Textutils to count the word and character, Lowercase to Uppercase, Uppercase to Lowercase" showAlert={showAlert} mode={mode} />
     </>
   );
 }

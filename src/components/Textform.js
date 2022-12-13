@@ -38,6 +38,7 @@ export default function Textform(props) {
          // Copy the text inside the text field
 
         navigator.clipboard.writeText(copyText.value);
+        window.getSelection().removeAllRanges();
         props.showAlert("Text copy into the clipboard!", "success");
     }
 
@@ -76,25 +77,25 @@ export default function Textform(props) {
         <div className={`container my-3 text-${props.mode==='light'?'dark':'light'}`}>
             <div className="mb-3">
                 <h2 style={{color:props.mode === 'light'?'black':'white'}}>{props.title}</h2>
-                <textarea style={{color:props.mode === 'light'?'black':'white', backgroundColor:props.mode === 'light'?'white':'grey'}} className="form-control" value={text} onChange={changeTextAreaValue} id="text" rows="12"></textarea>
+                <textarea style={{color:props.mode === 'light'?'black':'white', backgroundColor:props.mode === 'light'?'white':'#424360'}} className="form-control" value={text} onChange={changeTextAreaValue} id="text" rows="12"></textarea>
             </div>
             <div>
-                <button className='btn btn-primary m-2' onClick={convertTextToUpperCase}>Convert to Uppercase</button>
-                <button className='btn btn-primary m-2' onClick={convertTextToLowerCase}>Convert to Lowercase</button>
-                <button className='btn btn-primary m-2' onClick={clearText}>Clear</button>
-                <button className='btn btn-primary m-2' onClick={handleCopy}>Copy Text</button>
-                <button className='btn btn-primary m-2' onClick={handleExtraSpace}>Remove extra spaces</button>
-                <button className='btn btn-primary m-2' onClick={handleCamelCase}>Camel case</button>
-                <button className='btn btn-primary m-2' onClick={handleSpeak}>Speak</button>
+                <button disabled={text.length===0} className='btn btn-primary m-2' onClick={convertTextToUpperCase}>Convert to Uppercase</button>
+                <button disabled={text.length===0} className='btn btn-primary m-2' onClick={convertTextToLowerCase}>Convert to Lowercase</button>
+                <button disabled={text.length===0} className='btn btn-primary m-2' onClick={clearText}>Clear</button>
+                <button disabled={text.length===0} className='btn btn-primary m-2' onClick={handleCopy}>Copy Text</button>
+                <button disabled={text.length===0} className='btn btn-primary m-2' onClick={handleExtraSpace}>Remove extra spaces</button>
+                <button disabled={text.length===0} className='btn btn-primary m-2' onClick={handleCamelCase}>Camel case</button>
+                <button disabled={text.length===0} className='btn btn-primary m-2' onClick={handleSpeak}>Speak</button>
             </div>
             <div className='my-3'>
                 <h4>Your text summary</h4>
                 <p> {countWords(text)} Words and {text.length} Characters </p>
-                <p>{0.008 * text.split(' ').length} Minutes read time</p>
+                <p>{0.008 * countWords(text)} Minutes read time</p>
             </div>
             <div className='my-3'>
                 <h4>Preview Text</h4>
-                <p> {text.length>0?text:"Please enter the above textarea to preview it here!"} </p>
+                <p> {text.length>0?text:"No text to preview!"} </p>
             </div>
         </div>
     )

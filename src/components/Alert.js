@@ -7,11 +7,13 @@ export default function Alert(props) {
     }
     
     return (
-        props.alert && // If the alert value is set that it will show
-        <div className="container">
-            <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
-                <strong>{capitalize(props.alert.type)} :</strong> {props.alert.msg}
-            </div>
+        <div style={{height: "50px"}}>
+           { props.alert && // If the alert value is set that it will show
+            <div className="container">
+                <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
+                    <strong>{capitalize(props.alert.type)} :</strong> {props.alert.msg}
+                </div>
+            </div>}
         </div>
     )
 }
